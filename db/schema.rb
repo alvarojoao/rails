@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330021204) do
+ActiveRecord::Schema.define(version: 20160331023925) do
+
+  create_table "ads", force: :cascade do |t|
+    t.decimal  "budget",     precision: 11, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
+    t.text     "second"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,5 +36,25 @@ ActiveRecord::Schema.define(version: 20160330021204) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+
+  create_table "creatives", force: :cascade do |t|
+    t.decimal  "bid",        precision: 11, scale: 2
+    t.text     "adText"
+    t.integer  "ad_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "creatives", ["ad_id"], name: "index_creatives_on_ad_id"
+
+  create_table "targetings", force: :cascade do |t|
+    t.string   "places"
+    t.integer  "genero"
+    t.integer  "ad_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "targetings", ["ad_id"], name: "index_targetings_on_ad_id"
 
 end

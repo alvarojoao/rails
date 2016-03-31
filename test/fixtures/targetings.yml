@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  places: MyString
+  genero: 1
+  ad_id: 
+
+two:
+  places: MyString
+  genero: 1
+  ad_id: 

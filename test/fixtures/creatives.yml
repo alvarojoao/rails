@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bid: 1.5
+  adText: MyText
+  ad_id: 
+
+two:
+  bid: 1.5
+  adText: MyText
+  ad_id: 

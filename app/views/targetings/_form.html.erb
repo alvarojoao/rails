@@ -1,0 +1,32 @@
+<%= form_for @targeting do |f| %>
+ 
+  <% if @targeting.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@targeting.errors.count, "error") %> prohibited
+        this targeting from being saved:
+      </h2>
+      <ul>
+        <% @targeting.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :genero %><br>
+    <%= f.select(:genero, options_for_select(@generos.collect { |s| [s[0].humanize, s[0]] }, selected: @targeting.genero), {} ) %>
+  </p>
+ 
+  <p>
+    <%= f.label :places %><br>
+    <%= f.text_field :places %>
+  </p>
+  
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>

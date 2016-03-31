@@ -1,0 +1,23 @@
+<h1>Listing Targetings</h1>
+<%= link_to 'New Targetings', new_targeting_path %>
+
+<table>
+  <tr>
+    <th>Places</th>
+    <th>Genero</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @targetings.each do |targeting| %>
+    <tr>
+      <td><%= targeting.places %></td>
+      <td><%= targeting.genero %></td>
+      <td><%= link_to 'Show', targeting_path(targeting) %></td>
+      <td><%= link_to 'Edit', edit_targeting_path(targeting) %></td>
+      <td><%= link_to 'Destroy', targeting_path(targeting),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
