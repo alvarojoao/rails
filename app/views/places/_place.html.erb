@@ -1,0 +1,11 @@
+<p>
+  <strong>place:</strong>
+  <%= place.address %>
+</p>
+
+
+<p>
+  <%= link_to 'Destroy Place', [place.targeting.ad,place.targeting, place],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

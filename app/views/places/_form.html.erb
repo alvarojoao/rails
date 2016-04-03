@@ -1,0 +1,13 @@
+<%= form_for([targeting.ad,targeting, targeting.places.build]) do |f| %>
+  <p>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </p>
+  
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+ 
+  

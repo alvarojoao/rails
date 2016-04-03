@@ -1,0 +1,20 @@
+<p>
+  <strong>Budget:</strong>
+  <%= @ad.budget %>
+</p>
+ 
+
+<h2>Creatives</h2>
+<%= render @ad.creatives %>
+
+<h2>Add a Creative:</h2>
+<%= render 'creatives/form' %>
+
+<h2>Targetings</h2>
+<%= render @ad.targetings %>
+
+<h2>Add a Targeting:</h2>
+<%= render 'targetings/form' %>
+
+<%= link_to 'Edit', edit_ad_path(@ad) %> |
+<%= link_to 'Back', ads_path %>

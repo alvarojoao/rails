@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331023925) do
+ActiveRecord::Schema.define(version: 20160403022555) do
 
   create_table "ads", force: :cascade do |t|
     t.decimal  "budget",     precision: 11, scale: 2
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20160331023925) do
   end
 
   add_index "creatives", ["ad_id"], name: "index_creatives_on_ad_id"
+
+  create_table "places", force: :cascade do |t|
+    t.string   "address"
+    t.integer  "targeting_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "places", ["targeting_id"], name: "index_places_on_targeting_id"
 
   create_table "targetings", force: :cascade do |t|
     t.string   "places"

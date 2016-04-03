@@ -1,0 +1,14 @@
+<p>
+  <strong>AdText:</strong>
+  <%= creative.adText %>
+</p>
+ 
+<p>
+  <strong>Bib:</strong>
+  <%= creative.bid %>
+</p>
+<p>
+  <%= link_to 'Destroy Creative', [creative.ad, creative],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

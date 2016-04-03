@@ -1,45 +1,33 @@
 class TargetingsController < ApplicationController
 
-	def new
-		@targeting = Targeting.new
-		@generos = Targeting.generos
-	end
-	def index
-		@targetings = Targeting.all
-	end
-	def edit
-		@targeting = Targeting.find(params[:id])
-		@generos = Targeting.generos
-	end
-	def show
-		@targeting = Targeting.find(params[:id])
-	end
+	
 	def destroy
-		@targeting = Targeting.find(params[:id])
+		@ad = Ad.find(params[:ad_id])
+		@targeting =  @ad.targetings.create(params[:id]) 
 		@targeting.destroy
 
-		redirect_to targetings_path
+		redirect_to ad_path(@ad)
 	end
-	def update
-		@targeting = Targeting.find(params[:id])
-
-		if @targeting.update(targeting_params)
-			redirect_to @targeting
-		else
-			render 'edit'
-		end
-	end
-
 	def create
-		@targeting = Targeting.new(targeting_params)
-
-		@targeting.save
-		redirect_to @targeting
+		@ad = Ad.find(params[:ad_id])
+		if targeting_place_params["places"]["address"]==""	
+			@creative =  @ad.creatives.build 
+			@targeting =  @ad.targetings.build 
+			@targeting.errors.add(:address,"is blank")
+			@generos = Targeting.generos
+		else
+			@targeting =  @ad.targetings.create(targeting_params) 
+			@place = @targeting.places.create(targeting_place_params["places"])
+			@ad.save
+		redirect_to ad_path(@ad)
 	end
 
 	private
 		def targeting_params
-			params.require(:targeting).permit(:places, :genero)
+			params.require(:targeting).permit(:genero)
+		end
+		def targeting_place_params
+			params.require(:targeting).permit(places:[:address])
 		end
 
 end

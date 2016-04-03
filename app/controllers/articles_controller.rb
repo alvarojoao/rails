@@ -3,6 +3,9 @@
 	
 	def new
 		@article = Article.new
+		# @article.comments.build
+		# @comment = Comment.new
+		@comment =  @article.comments.build 
 	end
 	def index
 		@articles = Article.all
@@ -31,14 +34,17 @@
 
 	def create
 		@article = Article.new(article_params)
-
 		@article.save
+		@comment = @article.comments.create(comment_params["comment"])
 		redirect_to @article
 	end
+
 
 	private
 		def article_params
 			params.require(:article).permit(:title, :text,:second)
 		end
-
+		def comment_params
+			params.require(:article).permit(comment: [:commenter,:body])
+		end
 end

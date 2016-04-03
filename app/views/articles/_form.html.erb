@@ -1,4 +1,4 @@
-<%= form_for @article do |f| %>
+<%= form_for(@article) do |f| %>
  
   <% if @article.errors.any? %>
     <div id="error_explanation">
@@ -28,6 +28,18 @@
     <%= f.label :second %><br>
     <%= f.text_area :second %>
   </p>
+
+    <%= f.fields_for :comment do |u| %>
+      <p>
+        <%= u.label :commenter %><br>
+        <%= u.text_field :commenter %>
+      </p>
+      <p>
+        <%= u.label :body %><br>
+        <%= u.text_area :body %>
+      </p>
+    <% end %>
+  
   <p>
     <%= f.submit %>
   </p>

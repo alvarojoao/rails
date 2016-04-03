@@ -1,0 +1,17 @@
+<strong>places:</strong>
+<%= render targeting.places  %>
+
+ 
+<h2>Add a new Place:</h2>
+<%= render 'places/form',:ad=> targeting.ad,:targeting => targeting %>
+
+<p>
+  <strong>genero:</strong>
+  <%= targeting.genero %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Targetin', [targeting.ad, targeting],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

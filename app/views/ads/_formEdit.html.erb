@@ -1,0 +1,25 @@
+<%= form_for @ad do |f| %>
+ 
+  <% if @ad.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@ad.errors.count, "error") %> prohibited
+        this ad from being saved:
+      </h2>
+      <ul>
+        <% @ad.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :budget %><br>
+    <%= f.number_field :budget %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
