@@ -3,7 +3,6 @@ class PlacesController < ApplicationController
 		@ad = Ad.find(params[:ad_id])
 		@targeting = @ad.targetings.find(params[:targeting_id])
 		if place_params["address"]==""	
-			@ad.errors.add(:address,"is blank")
 		else
 			@targeting.places.create(place_params)
 			@ad.save

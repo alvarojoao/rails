@@ -9,7 +9,7 @@ class AdsController < ApplicationController
 
 	end
 	def index
-		@ads = Ad.all
+		@ads = Ad.all.paginate(:page => params[:page], :per_page => 10)
 	end
 	def edit
 		@ad = Ad.find(params[:id])
@@ -56,12 +56,6 @@ class AdsController < ApplicationController
 			@creative =  @ad.creatives.build 
 			@creative.errors.add(:bid,"is blank")
 			@targeting =  @ad.targetings.build 
-			@generos = Targeting.generos
-			render 'new'
-		elsif targeting_place_params["targeting"]["address"]==""
-			@creative =  @ad.creatives.build 
-			@targeting =  @ad.targetings.build 
-			@targeting.errors.add(:address,"is blank")
 			@generos = Targeting.generos
 			render 'new'
 		else
