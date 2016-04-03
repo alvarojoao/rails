@@ -2,8 +2,11 @@ class PlacesController < ApplicationController
 	def create
 		@ad = Ad.find(params[:ad_id])
 		@targeting = @ad.targetings.find(params[:targeting_id])
-		@targeting.places.create(place_params)
-		@ad.save
+		if place_params["address"]==""	
+			@ad.errors.add(:address,"is blank")
+		else
+			@targeting.places.create(place_params)
+			@ad.save
 		redirect_to ad_path(@ad)
 	end
 	def destroy

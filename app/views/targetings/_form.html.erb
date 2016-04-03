@@ -1,4 +1,17 @@
 <%= form_for([@ad, @ad.targetings.build]) do |f| %>
+  <% if @ad.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@ad.errors.count, "error") %> prohibited
+        this targeting from being saved:
+      </h2>
+      <ul>
+        <% @ad.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>
     <%= f.label :genero %><br>
     <%= f.select(:genero, options_for_select(@generos.collect { |s| [s[0].humanize, s[0]] }), {} ) %>

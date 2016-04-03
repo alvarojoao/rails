@@ -10,15 +10,14 @@ class TargetingsController < ApplicationController
 	end
 	def create
 		@ad = Ad.find(params[:ad_id])
+		@generos = Targeting.generos
 		if targeting_place_params["places"]["address"]==""	
-			@creative =  @ad.creatives.build 
-			@targeting =  @ad.targetings.build 
-			@targeting.errors.add(:address,"is blank")
-			@generos = Targeting.generos
+			@ad.errors.add(:address,"is blank")
 		else
 			@targeting =  @ad.targetings.create(targeting_params) 
 			@place = @targeting.places.create(targeting_place_params["places"])
 			@ad.save
+		end
 		redirect_to ad_path(@ad)
 	end
 

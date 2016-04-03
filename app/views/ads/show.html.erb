@@ -8,12 +8,16 @@
 <%= render @ad.creatives %>
 
 <h2>Add a Creative:</h2>
+<label class="text-danger" id="validation-error-creative"></label>
 <%= render 'creatives/form' %>
 
 <h2>Targetings</h2>
 <%= render @ad.targetings %>
 
+
 <h2>Add a Targeting:</h2>
+<label class="text-danger" id="validation-error-targeting"></label>
+
 <%= render 'targetings/form' %>
 
 <%= link_to 'Edit', edit_ad_path(@ad) %> |

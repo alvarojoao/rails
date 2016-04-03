@@ -30,19 +30,62 @@ var validationBudget = function(){
 	}
 	return valid;
 };
-// $( document ).on("submit","#new_ad",function( event ) {
-// 	var validateBlankResult = validationBlank()
-// 	var validationBudgetResult = validationBudget()
-// 	if( validateBlankResult&&validationBudgetResult )
-// 		return;
-// 	else {
-// 		event.preventDefault();
-// 		if(!validateBlankResult)
-// 			$("#validation-error").append("Favor preencher os campos Corretamente")
-// 		if (!validationBudgetResult)
-// 			$("#validation-error").append("Valor Bid superior ao Budget")
+$( document ).on("submit","#new_ad",function( event ) {
+	var validateBlankResult = validationBlank()
+	var validationBudgetResult = validationBudget()
+	if( validateBlankResult&&validationBudgetResult )
+		return;
+	else {
+		event.preventDefault();
+		if(!validateBlankResult)
+			$("#validation-error").append("Favor preencher os campos Corretamente")
+		if (!validationBudgetResult)
+			$("#validation-error").append("Valor Bid superior ao Budget")
 
-// 	}
-// });
+	}
+});
+$( document ).on("submit","#new_targeting",function( event ) {
+	// targeting_places_address
+	//validation-error-targeting
+	if( validateBlankResult&&validationBudgetResult )
+		return;
+	else {
+		event.preventDefault();
+		if(!validateBlankResult)
+			$("#validation-error").append("Favor preencher os campos Corretamente")
+		if (!validationBudgetResult)
+			$("#validation-error").append("Valor Bid superior ao Budget")
+
+	}
+});
+$( document ).on("submit","#new_creative",function( event ) {
+	// creative_adText
+	// creative_bid
+	//validation-error-creative
+	if( validateBlankResult&&validationBudgetResult )
+		return;
+	else {
+		event.preventDefault();
+		if(!validateBlankResult)
+			$("#validation-error").append("Favor preencher os campos Corretamente")
+		if (!validationBudgetResult)
+			$("#validation-error").append("Valor Bid superior ao Budget")
+
+	}
+});
+$( document ).on("submit","#new_place",function( event ) {
+	// place_address
+	// validation-error-place
+	if( validateBlankResult&&validationBudgetResult )
+		return;
+	else {
+		event.preventDefault();
+		if(!validateBlankResult)
+			$("#validation-error").append("Favor preencher os campos Corretamente")
+		if (!validationBudgetResult)
+			$("#validation-error").append("Valor Bid superior ao Budget")
+
+	}
+});
 
 });
