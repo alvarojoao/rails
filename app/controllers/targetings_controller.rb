@@ -3,8 +3,10 @@ class TargetingsController < ApplicationController
 	
 	def destroy
 		@ad = Ad.find(params[:ad_id])
-		@targeting =  @ad.targetings.find(params[:id]) 
-		@targeting.destroy
+		if @ad.targetings.count >1
+			@targeting =  @ad.targetings.find(params[:id]) 
+			@targeting.destroy
+		end
 		redirect_to ad_path(@ad)
 	end
 	def create

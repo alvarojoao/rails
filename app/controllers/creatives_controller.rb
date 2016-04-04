@@ -21,8 +21,10 @@ class CreativesController < ApplicationController
 	end
 	def destroy
 		@ad = Ad.find(params[:ad_id])
-		@creative = @ad.creatives.find(params[:id])
-		@creative.destroy
+		if @ad.creatives.count >1
+			@creative = @ad.creatives.find(params[:id])
+			@creative.destroy
+		end
 		redirect_to ad_path(@ad)
 	end
 	private
