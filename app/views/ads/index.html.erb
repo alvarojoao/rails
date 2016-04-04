@@ -1,23 +1,34 @@
-<h1>Listing Ads</h1>
-<%= link_to 'New ads', new_ad_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Listing Ads</h1>
+      <%= link_to 'New ads', new_ad_path,title:"Add new Ad" %>
+    </div>
+    <div class="col-xs-12 text-center">
+      <table>
+        <tr>
+          <th class="col-xs-6">budget</th>
+          <th class="col-xs-2" ></th>
+          <!-- <th class="col-xs-2" ></th> -->
+          <th class="col-xs-2" ></th>
+        </tr>
+       
+        <% @ads.each do |ad| %>
+          <tr>
+            <td>
+            <%= number_to_currency(ad.budget,unit: "R$", separator: ",", delimiter: "") %></td>
+            <td><%= link_to '', ad_path(ad),title:"Edit", class:"glyphicon glyphicon-edit" %></td>
+            <!-- <td><%= link_to '', edit_ad_path(ad), class:"glyphicon glyphicon-edit" %></td> -->
+            <td><%= link_to '', ad_path(ad),title:"Remove", class:"glyphicon glyphicon-trash",
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= will_paginate @ads %>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>budget</th>
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @ads.each do |ad| %>
-    <tr>
-      <td><%= ad.budget %></td>
-      <td><%= link_to 'Show', ad_path(ad) %></td>
-      <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
-      <td><%= link_to 'Destroy', ad_path(ad),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
-  <%= will_paginate @ads %>
 
 

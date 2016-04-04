@@ -5,10 +5,12 @@
  
 <p>
   <strong>Bib:</strong>
-  <%= creative.bid %>
+  <%= number_to_currency(creative.bid,unit: "R$", separator: ",", delimiter: "") %>
 </p>
+<% if size >1 %>
 <p>
   <%= link_to 'Destroy Creative', [creative.ad, creative],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 </p>
+<% end %>

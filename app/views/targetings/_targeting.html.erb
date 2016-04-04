@@ -1,18 +1,21 @@
-<strong>places:</strong>
-<%= render targeting.places  %>
-
- 
-<h2>Add a new Place:</h2>
-<label class="text-danger" id="validation-error-place"></label>
-<%= render 'places/form',:ad=> targeting.ad,:targeting => targeting %>
-
 <p>
   <strong>genero:</strong>
   <%= targeting.genero %>
 </p>
 
+<% if targeting.places.count >0 %>
+	<strong>Places</strong><br/>
+<% end %>
+<%= render targeting.places  %>
+
+
+<label class="text-danger" id="validation-error-place"></label>
+<%= render 'places/form',:ad=> targeting.ad,:targeting => targeting %>
+
+<% if size >1 %>
 <p>
-  <%= link_to 'Destroy Targetin', [targeting.ad, targeting],
+  <%= link_to 'Destroy Targeting', [targeting.ad, targeting],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 </p>
+<% end %>

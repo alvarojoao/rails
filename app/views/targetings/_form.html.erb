@@ -17,12 +17,10 @@
     <%= f.select(:genero, options_for_select(@generos.collect { |s| [s[0].humanize, s[0]] }), {} ) %>
   </p>
   <%= f.fields_for :places do |u| %>
-      <p>
-        <%= u.label :address %><br>
-        <%= u.text_field :address %>
-      </p>
-    <% end %>
-  
+    <p>
+    <%= u.text_field :address,:placeholder => "Add a Place" %> 
+    </p>
+  <% end %>
   
   <p>
     <%= f.submit %>

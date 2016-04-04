@@ -62,7 +62,9 @@ class AdsController < ApplicationController
 			if @ad.save
 				@creative = @ad.creatives.create(creative_params["creative"])
 				@targeting = @ad.targetings.create(targeting_params["targeting"])
-				@place = @targeting.places.create(targeting_place_params["targeting"])
+				if targeting_place_params["targeting"]["address"]!=""
+					@place = @targeting.places.create(targeting_place_params["targeting"])
+				end
 				redirect_to @ad
 			else
 

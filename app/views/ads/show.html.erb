@@ -1,24 +1,62 @@
-<p>
-  <strong>Budget:</strong>
-  <%= @ad.budget %>
-</p>
- 
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<span>
+				<%= link_to 'Back', ads_path %>
+			</span>
+			<h1>Ad #<%=params[:id]%></h1>
+  		</div>
+		<div class="col-xs-12 text-center">
+			<p>
+				<strong>Budget:</strong>
+				<span id="ad_budget">
+				<%= number_to_currency(@ad.budget,unit: "R$", separator: ",", delimiter: "") %></span> 
+				<%= link_to '', edit_ad_path(@ad) ,class:"glyphicon glyphicon-edit" %> 
+			</p>
+			<div class="col-xs-6">
+				<h3>Creatives</h3>
+				<%= render @ad.creatives,:size=>@ad.creatives.count %>
+				<div class="panel-group">
+				    <div class="panel panel-default">
+				      <div class="panel-heading">
+				        <h4 class="panel-title">
+				          <a data-toggle="collapse" href="#creative">Add a new Creative <i class=""> </i> </a>
+				        </h4>
+				      </div>
+				      <div id="creative" class="panel-collapse collapse">
+				        <div class="panel-body">
+							<label class="text-danger" id="validation-error-creative"></label>
+				        	<%= render 'creatives/form' %>
+				        </div>
+				      </div>
+				    </div>
+			  	</div>
+			</div>
 
-<h2>Creatives</h2>
-<%= render @ad.creatives %>
+			<div class="col-xs-6">
 
-<h2>Add a Creative:</h2>
-<label class="text-danger" id="validation-error-creative"></label>
-<%= render 'creatives/form' %>
+				<h3>Targetings</h3>
+				<%= render @ad.targetings,:size=>@ad.targetings.count %>
 
-<h2>Targetings</h2>
-<%= render @ad.targetings %>
+				<div class="panel-group">
+				    <div class="panel panel-default">
+				      <div class="panel-heading">
+				        <h4 class="panel-title">
+				          <a data-toggle="collapse" href="#targeting">Add a new Targeting <i class=""> </i> </a>
+				        </h4>
+				      </div>
+				      <div id="targeting" class="panel-collapse collapse">
+				        <div class="panel-body">
+							<label class="text-danger" id="validation-error-targeting"></label>
+							<%= render 'targetings/form' %>
+				        </div>
+				      </div>
+				    </div>
+			  	</div>
+			</div>
 
 
-<h2>Add a Targeting:</h2>
-<label class="text-danger" id="validation-error-targeting"></label>
-
-<%= render 'targetings/form' %>
-
-<%= link_to 'Edit', edit_ad_path(@ad) %> |
-<%= link_to 'Back', ads_path %>
+			<%= link_to 'Back', ads_path %>
+		</div>
+	</div>
+</div>

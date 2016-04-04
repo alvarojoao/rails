@@ -1,62 +1,69 @@
-<%= form_for @ad do |f| %>
- 
-  <% if @ad.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@ad.errors.count, "error") %> prohibited
-        this ad from being saved:
-      </h2>
-      <ul>
-        <% @ad.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+<div class="col-xs-12 text-center">
+  <%= form_for @ad do |f| %>
+    <div class="col-xs-12 text-center">
+      <% if @ad.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@ad.errors.count, "error") %> prohibited
+            this ad from being saved:
+          </h2>
+          <ul>
+            <% @ad.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <% if @creative.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@creative.errors.count, "error") %> prohibited
+            this creative from being saved:
+          </h2>
+          <ul>
+            <% @creative.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12">
+      <label class="text-danger" id="validation-error"></label>
+      <p>
+        <%= f.label :budget,class:"required" %><br>
+        <%= f.number_field( :budget,:placeholder => "value in R$ " ,  min: 1.0, step: 0.01, lang:"nb",
+        pattern:"[0-9]+([\.,][0-9]+)?")%>
+      </p>
+        <h3>Creative</h3>
+
+        <%= f.fields_for :creative do |u| %>
+          <p>
+            <%= u.label :adText,class:"required" %><br>
+            <%= u.text_field :adText,:placeholder => "Text to display"  %>
+          </p>
+         
+          <p>
+            <%= u.label :bid,class:"required" %><br>
+            <%= u.number_field( :bid,:placeholder => "Bid in R$" ,  min: 1.0, step: 0.01,pattern:"[0-9]+([\.,][0-9]+)?") %>
+          </p>
         <% end %>
-      </ul>
+        <h3>Targeting</h3>
+
+        <%= f.fields_for :targeting do |t| %>
+          <p>
+            <%= t.label :genero %><br>
+            <%= t.select(:genero, options_for_select(@generos.collect { |s| [s[0].humanize, s[0]] }, selected: @targeting.genero), {} ) %>
+          </p>
+          <p>
+            <%= t.label :address,"Place" %><br>
+            <%= t.text_field :address,:placeholder => "Add a Place" %> 
+
+          </p>
+        <% end %>
+      <p>
+        <%= f.submit %>
+      </p>
     </div>
   <% end %>
-  <% if @creative.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@creative.errors.count, "error") %> prohibited
-        this creative from being saved:
-      </h2>
-      <ul>
-        <% @creative.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  <label class="text-danger" id="validation-error"></label>
-  <p>
-    <%= f.label :budget %><br>
-    <%= f.number_field( :budget,  min: 1.0, step: 0.05)%>
-  </p>
-    <%= f.fields_for :creative do |u| %>
-      <p>
-        <%= u.label :adText %><br>
-        <%= u.text_field :adText %>
-      </p>
-     
-      <p>
-        <%= u.label :bid %><br>
-        <%= u.number_field( :bid,  min: 1.0, step: 0.05) %>
-      </p>
-    <% end %>
-    <%= f.fields_for :targeting do |t| %>
-      <p>
-        <%= t.label :genero %><br>
-        <%= t.select(:genero, options_for_select(@generos.collect { |s| [s[0].humanize, s[0]] }, selected: @targeting.genero), {} ) %>
-      </p>
-     
-      <p>
-        <%= t.label :address %><br>
-        <%= t.text_field :address %>
-      </p>
-  
-    <% end %>
-  <p>
-    <%= f.submit %>
-  </p>
- 
-<% end %>
+</div>

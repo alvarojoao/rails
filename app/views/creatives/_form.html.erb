@@ -1,13 +1,14 @@
 <%= form_for([@ad, @ad.creatives.build]) do |f| %>
 
   <p>
-    <%= f.label :adText %><br>
+    <%= f.label :adText,class:"required" %><br>
     <%= f.text_field :adText %>
   </p>
  
   <p>
-    <%= f.label :bid %><br>
-    <%= f.number_field( :bid,  min: 1.0, step: 0.05) %>
+    <%= f.label :bid,class:"required" %><br>
+    <%= f.number_field( :bid,  min: 1.0, step: 0.01, lang:"nb",
+        pattern:"[0-9]+([\.,][0-9]+)?") %>
   </p>
   
  
