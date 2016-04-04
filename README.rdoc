@@ -1,28 +1,26 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
 
-* System dependencies
-
-* Configuration
+===Rails 4.2.5.1
 
 * Database creation
 
-* Database initialization
+<tt> rake db:migration</tt>
 
-* How to run the test suite
+<tt> rake db:migrate RAILS_ENV=test</tt>
 
-* Services (job queues, cache servers, search engines, etc.)
+* How to run the test model
 
-* Deployment instructions
+<tt> rake test test\models\ad_test.rb</tt>
 
-* ...
+* Installing the project's dependencies
 
+<tt> bundle install</tt>
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Serving the project
+
+<tt> rails server </tt>
+
+open http://localhost:3000/
+
