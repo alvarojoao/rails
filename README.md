@@ -10,6 +10,8 @@
 
 - Database creation
 
+<tt> rake db:setup</tt>
+
 <tt> rake db:migrate</tt>
 
 <tt> rake db:migrate RAILS_ENV=test</tt>
