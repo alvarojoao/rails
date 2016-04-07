@@ -1,4 +1,4 @@
-== README
+== README [![Snap CI branch](https://img.shields.io/snap-ci/ThoughtWorksStudios/eb_deployer/master.svg)]()
 
 * Ruby version
 
